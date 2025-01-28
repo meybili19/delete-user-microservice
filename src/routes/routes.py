@@ -1,6 +1,6 @@
 585 / 5.000
 from flask import jsonify
-from models import db, User
+from src.models.models import db, User
 
 # Route to delete user by ID
 def delete_user(id):

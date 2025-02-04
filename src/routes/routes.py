@@ -1,4 +1,3 @@
-585 / 5.000
 from flask import jsonify
 from src.models.models import db, User
 

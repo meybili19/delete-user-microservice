@@ -1,27 +1,17 @@
-# Usa una imagen base oficial de Python
-FROM python:3.11-slim
+# Use a base image with Python
+FROM python:3.9
 
-# Establece el directorio de trabajo en el contenedor
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copia los archivos de tu proyecto al contenedor
-COPY . /app
+# Copy all the project files to the container
+COPY . .
 
-# Instala las dependencias del sistema necesarias para MySQL
-RUN apt-get update && apt-get install -y \
-    default-libmysqlclient-dev gcc \
-    && rm -rf /var/lib/apt/lists/*
-
-# Instala las dependencias del proyecto
+# Install the dependencies from requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expone el puerto en el que se ejecutará tu aplicación
+# Expose the port where Flask will run
 EXPOSE 5003
 
-# Establece las variables de entorno para asegurar que Flask funcione correctamente
-ENV FLASK_APP=src.app
-ENV FLASK_RUN_HOST=0.0.0.0
-ENV FLASK_RUN_PORT=5003
-
-# Comando para iniciar la aplicación
-CMD ["flask", "run"]
+# Command to run the application correctly
+CMD ["python", "-m", "src.app"]

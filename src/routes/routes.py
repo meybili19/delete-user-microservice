@@ -14,6 +14,7 @@ def delete_user(id):
         # Delete the user
         db.session.delete(user)
         db.session.commit()
-        return jsonify({'message': 'User deleted successfully'}), 200
+        return jsonify({'message': 'User deleted successfully OK'}), 200
+    
     except Exception as e:
         return jsonify({'error': str(e)}), 400
